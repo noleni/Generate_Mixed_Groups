@@ -1,3 +1,22 @@
 <% @caracters.each do |caracter| %>
   <%= caracter.name %>
+  <%= cl_image_tag caracter.photo.key, :transformation=>[
+  {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
+  {:radius=>"max"},
+  {:width=>200, :crop=>"scale"}
+  ] %>
+<% end %>
+
+<%= render 'memberships/form', group: @group, caracter: @caracter, membership: @membership %>
+
+<% @groups.each do |group| %>
+    <% group.memberships.each do |membership|  %>
+      <%= membership.caracter.name %>
+      <%= membership.caracter.movie %>
+      <%= cl_image_tag membership.caracter.photo.key, :transformation=>[
+      {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
+      {:radius=>"max"},
+      {:width=>200, :crop=>"scale"}
+      ] %>
+    <% end %>
 <% end %>
