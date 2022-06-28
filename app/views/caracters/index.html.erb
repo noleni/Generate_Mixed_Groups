@@ -1,22 +1,32 @@
-<% @caracters.each do |caracter| %>
-  <%= caracter.name %>
-  <%= cl_image_tag caracter.photo.key, :transformation=>[
-  {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
-  {:radius=>"max"},
-  {:width=>200, :crop=>"scale"}
-  ] %>
-<% end %>
-
-<%= render 'memberships/form', group: @group, caracter: @caracter, membership: @membership %>
-
-<% @groups.each do |group| %>
-    <% group.memberships.each do |membership|  %>
-      <%= membership.caracter.name %>
-      <%= membership.caracter.movie %>
-      <%= cl_image_tag membership.caracter.photo.key, :transformation=>[
-      {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
-      {:radius=>"max"},
-      {:width=>200, :crop=>"scale"}
-      ] %>
+<div class="container mt-5">
+  <div class="cards mb-5">
+    <% @caracters.each do |caracter| %>
+      <div class="">
+        <div class="">
+          <%= cl_image_tag caracter.photo.key, :transformation=>[
+          {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
+          {:radius=>"max"},
+          {:width=>150, :crop=>"scale"}
+          ] %>
+        </div>
+        <div class="div">
+          <%= caracter.name %>
+        </div>
+      </div>
     <% end %>
-<% end %>
+  </div>
+
+  <%= render 'memberships/form', group: @group, caracter: @caracter, membership: @membership %>
+
+  <% @groups.each do |group| %>
+      <% group.memberships.each do |membership|  %>
+        <%= membership.caracter.name %>
+        <%= membership.caracter.movie %>
+        <%= cl_image_tag membership.caracter.photo.key, :transformation=>[
+        {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
+        {:radius=>"max"},
+        {:width=>200, :crop=>"scale"}
+        ] %>
+      <% end %>
+  <% end %>
+</div>
