@@ -78,3 +78,11 @@ end
 
 
 puts 'Les groupes sont créés'
+
+
+Membership.destroy_all
+puts 'Les memberships sont détruits'
+
+
+Group.destroy_all
+puts 'Les groupes sont détruits'

@@ -59,15 +59,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_085626) do
 
   create_table "memberships", force: :cascade do |t|
     t.bigint "caracter_id", null: false
-    t.bigint "group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "group_id"
     t.index ["caracter_id"], name: "index_memberships_on_caracter_id"
-    t.index ["group_id"], name: "index_memberships_on_group_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "memberships", "caracters"
-  add_foreign_key "memberships", "groups"
 end

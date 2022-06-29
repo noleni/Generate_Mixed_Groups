@@ -3,7 +3,7 @@ class CaractersController < ApplicationController
 
   def index
     @caracters = Caracter.all
-    @membership = Membership.new()
+    @group = Group.new()
     @groups = Group.all
   end
 end
