@@ -16,25 +16,32 @@
     <% end %>
   </div>
 
-  <%= render 'groups/form', group: @group %>
+  <% if Group.all.count == 0 %>
+    <%= render 'groups/form', group: @group %>
+  <% else %>
+    <%= render 'groups/reset' %>
+  <% end %>
 
   <div class="group-grid">
-    <% @groups.each do |group| %>
+    <% @groups.each_with_index do |group, index| %>
       <div class="group-card">
-          <% group.memberships.each do |membership|  %>
-            <div class="">
+        <h3>Groupe <%= index + 1 %></h3>
+        <% group.memberships.each do |membership|  %>
+          <div class="">
 
-              <p><%= membership.caracter.name %></p>
-              <div class="">
-              <%= cl_image_tag membership.caracter.photo.key, :transformation=>[
-              {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
-              {:radius=>"max"},
-              {:width=>200, :crop=>"scale"}
-              ] %>
-              </div>
+            <p><%= membership.caracter.name %></p>
+            <div class="">
+            <%= cl_image_tag membership.caracter.photo.key, :transformation=>[
+            {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
+            {:radius=>"max"},
+            {:width=>200, :crop=>"scale"}
+            ] %>
             </div>
-          <% end %>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>
+
 </div>
+

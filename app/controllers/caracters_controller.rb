@@ -6,4 +6,6 @@ class CaractersController < ApplicationController
     @group = Group.new()
     @groups = Group.all
   end
+
+
 end
