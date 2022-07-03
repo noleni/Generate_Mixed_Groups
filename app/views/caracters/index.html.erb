@@ -1,31 +1,46 @@
 <div class="container mt-5">
-  <div class="cards mb-5">
-    <% @caracters.valid.each do |caracter| %>
-      <div class="">
-        <div class="">
-          <%= cl_image_tag caracter.photo.key, :transformation=>[
-          {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
-          {:radius=>"max"},
-          {:width=>150, :crop=>"scale"}
-          ] %>
+<div class="wrapper" data-controller="caracters-and-groups">
+  <div class="caracters-list" >
+    <div class="">
+    <%= link_to "+ participant", { :controller => :caracters, :action => :new }, class:'btn btn-dark' %>
+      <% @caracters.each do |caracter| %>
+        <div class="cards">
+        <%if caracter.status %>
+          <div class="d-flex m-2 align-items-center" data-caracters-and-groups-target="caracterslist">
+            <%= cl_image_tag caracter.photo.key, :transformation=>[
+            {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
+            {:radius=>"max"},
+            {:width=>80, :crop=>"scale"}
+            ], class: "avatar-bordered"
+             %>
+        <% else %>
+            <div class="d-flex m-2 align-items-center" data-caracters-and-groups-target="caracterslist">
+            <%= cl_image_tag caracter.photo.key, :transformation=>[
+            {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
+            {:radius=>"max"},
+            {:width=>80, :crop=>"scale"}
+            ], class: "avatar-bordered black-n-white"
+             %>
+        <% end %>
+            <p class="name"><%= caracter.name %></p>
+          </div>
         </div>
-        <div class="mt-3">
-          <h4 class=""><%= caracter.name %></h4>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
+    <div class="">
+      <% if Group.all.count == 0 %>
+        <%= render 'groups/form', group: @group %>
+      <% else %>
+        <%= render 'groups/reset' %>
+      <% end %>
+    </div>
 
-  <% if Group.all.count == 0 %>
-    <%= render 'groups/form', group: @group %>
-  <% else %>
-    <%= render 'groups/reset' %>
-  <% end %>
 
-  <div class="group-grid">
+  <div class="group-grid result-box" data-caracters-and-groups-target="result">
     <% @groups.each_with_index do |group, index| %>
-      <div class="group-card">
-        <h3>Groupe <%= index + 1 %></h3>
+      <div class="group-card ">
+        <h4>Groupe <%= index + 1 %></h4>
         <% group.memberships.each do |membership|  %>
           <div class="">
 
@@ -35,13 +50,12 @@
             {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
             {:radius=>"max"},
             {:width=>200, :crop=>"scale"}
-            ] %>
+            ], class:"avatar-bordered" %>
             </div>
           </div>
         <% end %>
       </div>
     <% end %>
   </div>
-
 </div>
-
+</div>

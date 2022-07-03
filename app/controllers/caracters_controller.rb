@@ -7,5 +7,12 @@ class CaractersController < ApplicationController
     @groups = Group.all
   end
 
+  def new
+    @caracter = Caracter.new()
+  end
+
+  def create
+  end
+
 
 end

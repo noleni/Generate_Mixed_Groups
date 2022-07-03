@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "pages#home"
-  resources :caracters, only: %i[index]
+  resources :caracters, only: %i[index new create]
   resources :groups, only: %i[index new create] do
     collection do
       get :reset

@@ -3,4 +3,5 @@ class Caracter < ApplicationRecord
   has_one_attached :photo
 
   scope :valid, -> { where(status: true) }
+  scope :taken, -> { where(status: false) }
 end

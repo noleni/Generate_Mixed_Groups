@@ -1,3 +1,7 @@
-<%= simple_form_for group do |f| %>
+<%= simple_form_for group,
+    data: {
+      caracters_and_groups_target: "form",
+      action: "submit->caracters_and_groups#send"
+      } do |f| %>
   <%= f.button :submit, class:'btn btn-dark' %>
 <% end %>
