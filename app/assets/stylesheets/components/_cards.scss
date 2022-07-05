@@ -26,6 +26,29 @@
   margin-left: 8px;
 }
 
+.name-opacity {
+  margin-bottom: 0;
+  margin-left: 8px;
+  opacity: 0.5;
+}
+
+.xmark {
+  margin-bottom: 0;
+  margin-left: 8px;
+  display: none;
+}
+
+.test:hover {
+  .xmark {
+    display: block;
+    color: black;
+  }
+}
+
+.menu-box {
+
+}
+
 .caracters-list {
   display: grid;
   grid-template-columns: 1fr 1fr;

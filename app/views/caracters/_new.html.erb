@@ -1,0 +1,7 @@
+<%= simple_form_for caracter,
+data: {
+  } do |f| %>
+    <%= f.input :name, label: 'pseudo' %>
+    <%= f.input :photo, as: :file %>
+    <%= f.button :submit, class:'btn btn-dark' %>
+  <% end %>

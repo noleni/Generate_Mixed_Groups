@@ -1,31 +1,38 @@
 <div class="container mt-5">
 <div class="wrapper" data-controller="caracters-and-groups">
-  <div class="caracters-list" >
-    <div class="">
-    <%= link_to "+ participant", { :controller => :caracters, :action => :new }, class:'btn btn-dark' %>
+  <div class="menu-box" >
+
+    <div class="caracters-list">
       <% @caracters.each do |caracter| %>
         <div class="cards">
-        <%if caracter.status %>
-          <div class="d-flex m-2 align-items-center" data-caracters-and-groups-target="caracterslist">
-            <%= cl_image_tag caracter.photo.key, :transformation=>[
-            {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
-            {:radius=>"max"},
-            {:width=>80, :crop=>"scale"}
-            ], class: "avatar-bordered"
-             %>
-        <% else %>
-            <div class="d-flex m-2 align-items-center" data-caracters-and-groups-target="caracterslist">
-            <%= cl_image_tag caracter.photo.key, :transformation=>[
-            {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
-            {:radius=>"max"},
-            {:width=>80, :crop=>"scale"}
-            ], class: "avatar-bordered black-n-white"
-             %>
-        <% end %>
+          <%if caracter.status %>
+            <div class="test d-flex m-2 align-items-center" data-caracters-and-groups-target="caracterslist">
+              <%= cl_image_tag caracter.photo.key, :transformation=>[
+              {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
+              {:radius=>"max"},
+              {:width=>80, :crop=>"scale"}
+              ], class: "avatar-bordered"
+              %>
             <p class="name"><%= caracter.name %></p>
+          <% else %>
+              <div class="test d-flex m-2 align-items-center" data-caracters-and-groups-target="caracterslist">
+              <%= cl_image_tag caracter.photo.key, :transformation=>[
+              {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
+              {:radius=>"max"},
+              {:width=>80, :crop=>"scale"}
+              ], class: "avatar-bordered black-n-white"
+              %>
+            <p class="name-opacity"><%= caracter.name %></p>
+          <% end %>
+            <%= link_to caracter_path(caracter), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+              <p class="xmark"><i class="fa-solid fa-circle-xmark"></i></p>
+            <% end %>
           </div>
         </div>
       <% end %>
+    </div>
+    <div class="mt-3">
+      <%= render 'caracters/new', caracter: @caracter %>
     </div>
   </div>
     <div class="">
