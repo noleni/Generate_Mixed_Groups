@@ -2,9 +2,9 @@
 <div class="wrapper" data-controller="caracters-and-groups">
   <div class="menu-box" >
 
-    <div class="caracters-list">
+    <div class="caracters-list" data-controller="caracters">
       <% @caracters.each do |caracter| %>
-        <div class="cards">
+        <div class="cards" data-caracters-target="caracter">
           <%if caracter.status %>
             <div class="test d-flex m-2 align-items-center" data-caracters-and-groups-target="caracterslist">
               <%= cl_image_tag caracter.photo.key, :transformation=>[
@@ -24,7 +24,7 @@
               %>
             <p class="name-opacity"><%= caracter.name %></p>
           <% end %>
-            <%= link_to caracter_path(caracter), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+            <%= link_to caracter_path(caracter), data: {turbo_method: :delete, turbo_confirm: "Tu es sûr.e de vouloir supprimer #{caracter.name} ?"} do %>
               <p class="xmark"><i class="fa-solid fa-circle-xmark"></i></p>
             <% end %>
           </div>
@@ -32,7 +32,9 @@
       <% end %>
     </div>
     <div class="mt-3">
+      <i class="fas fa-pen fa-xs ml-2" data-action="click->caracters#displayForm"></i>
       <%= render 'caracters/new', caracter: @caracter %>
+
     </div>
   </div>
     <div class="">

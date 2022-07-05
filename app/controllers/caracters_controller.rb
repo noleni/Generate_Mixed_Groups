@@ -21,7 +21,6 @@ class CaractersController < ApplicationController
   def destroy
     @caracter = Caracter.find(params[:id])
     @caracter.destroy
-    # No need for app/views/restaurants/destroy.html.erb
     redirect_to caracters_path, status: :see_other
   end
 
