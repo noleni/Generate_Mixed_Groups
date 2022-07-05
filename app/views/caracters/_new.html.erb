@@ -1,7 +1,7 @@
-<%= simple_form_for caracter, 'caracters-target': 'form', html: { class: 'd-none' },
-data: {
-  } do |f| %>
-    <%= f.input :name, label: 'pseudo' %>
-    <%= f.input :photo, input_html: { class: 'd-none'}, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo'%>
-    <%= f.button :submit, class:'btn btn-dark' %>
-  <% end %>
+<%= simple_form_for caracter,
+  html: { class: 'd-none'},
+  data: {add_caracter_target: "form"} do |f| %>
+  <%= f.input :name, label: 'pseudo' %>
+  <%= f.input :photo, input_html: { class: 'd-none'}, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo'%>
+  <%= f.button :submit, class:'btn btn-dark' %>
+<% end %>

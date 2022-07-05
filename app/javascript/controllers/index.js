@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AddCaracterController from "./add_caracter_controller.js"
+application.register("add-caracter", AddCaracterController)
+
 import CaractersAndGroupsController from "./caracters_and_groups_controller.js"
 application.register("caracters-and-groups", CaractersAndGroupsController)
 
