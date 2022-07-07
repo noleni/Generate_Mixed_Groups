@@ -12,3 +12,6 @@ application.register("caracters-and-groups", CaractersAndGroupsController)
 
 import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
+
+import PickOneController from "./pick_one_controller.js"
+application.register("pick-one", PickOneController)

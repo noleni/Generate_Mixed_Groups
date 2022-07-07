@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_28_085626) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_07_092909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,6 +55,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_085626) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
+    t.integer "number"
+    t.bigint "request_id", null: false
+    t.index ["request_id"], name: "index_groups_on_request_id"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -65,7 +68,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_085626) do
     t.index ["caracter_id"], name: "index_memberships_on_caracter_id"
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.integer "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "groups", "requests"
   add_foreign_key "memberships", "caracters"
 end

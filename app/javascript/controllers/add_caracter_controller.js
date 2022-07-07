@@ -5,9 +5,7 @@ export default class extends Controller {
   static targets = [ "caracter", "form", "button" ]
 
   connect() {
-    console.log(this.caracterTarget);
-    console.log(this.formTarget);
-    console.log(this.buttonTarget)
+
   }
 
   displayForm() {
