@@ -4,6 +4,7 @@
 
     <div class="" >
       <div class="sidebar p-4">
+        <h5 class="ms-2 my-3">Personnages disponibles</h5>
         <div class="caracters-list">
           <% @caracters.valid.each do |caracter| %>
             <div class="cards" data-add-caracter-target="caracter">
@@ -31,7 +32,7 @@
     </div>
   </div>
 
-  <div class="" data-controller="pick-one" >
+  <div class="result-box" data-controller="pick-one" >
     <div class="">
       <% if Group.all.count == 0 %>
         <h3>Que veux-tu faire ?</h3>
