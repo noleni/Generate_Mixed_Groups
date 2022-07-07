@@ -1,0 +1,15 @@
+.button-choice {
+  background-color: #EB5353;
+  color: white;
+  font-weight: lighter;
+  opacity: 0.8;
+  padding: 5px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 12px;
+}
+
+.button-choice:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}

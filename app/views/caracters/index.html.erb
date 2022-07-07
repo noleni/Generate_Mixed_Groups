@@ -1,80 +1,83 @@
 
-  <div class="wrapper">
-    <div class="menu-box" data-controller="add-caracter">
+<div class="wrapper">
+  <div class="menu-box" data-controller="add-caracter">
 
-      <div class="" >
-        <div class="sidebar p-4">
-          <div class="caracters-list">
-            <% @caracters.valid.each do |caracter| %>
-              <div class="cards" data-add-caracter-target="caracter">
-                <div class="test d-flex m-2 align-items-center">
-                  <%= cl_image_tag caracter.photo.key, :transformation=>[
-                  {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
-                  {:radius=>"max"},
-                  {:width=>80, :crop=>"scale"},
-                  {:quality=>90}
-                  ], class: "avatar-bordered"
-                  %>
-                  <p class="name"><%= caracter.name %></p>
-                  <%= link_to caracter_path(caracter), data: {turbo_method: :delete, turbo_confirm: "Tu es sûr.e de vouloir supprimer #{caracter.name} ?"} do %>
-                    <p class="xmark"><i class="fa-solid fa-circle-xmark"></i></p>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <div class="mt-5">
-          <button data-add-caracter-target="button" data-action="click->add-caracter#displayForm" class="btn btn-dark">Ajouter un personnage</button>
-          <%= render "caracters/new", caracter: @caracter %>
-           </div>
-
-        </div>
-      </div>
-    </div>
-    <div class="" data-controller="pick-one" >
-      <div class="">
-        <% if Group.all.count == 0 %>
-          <%= render 'requests/number_of_groups', request: @request %>
-        <% else %>
-          <%= render 'groups/reset' %>
-        <% end %>
-
-
-        <%# <%= render 'caracters/onerandom', random_caracter: @random_caracter %>
-
-      </div>
-
-
-      <div class="group-grid" data-pick-one-target="result">
-      <% if @groups == [] %>
-        <p>Hello</p>
-      <% end %>
-        <% @groups.each_with_index do |group, index| %>
-          <div class="group-card ">
-            <h4>Equipe <%= index + 1 %></h4>
-            <% group.memberships.each do |membership|  %>
-              <div class="">
-
-                <p><%= membership.caracter.name %></p>
-                <div class="">
-                <%= cl_image_tag membership.caracter.photo.key, :transformation=>[
+    <div class="" >
+      <div class="sidebar p-4">
+        <div class="caracters-list">
+          <% @caracters.valid.each do |caracter| %>
+            <div class="cards" data-add-caracter-target="caracter">
+              <div class="test d-flex m-2 align-items-center">
+                <%= cl_image_tag caracter.photo.key, :transformation=>[
                 {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
                 {:radius=>"max"},
-                {:width=>200, :crop=>"scale"}
-                ], class:"avatar-bordered" %>
-                </div>
+                {:width=>80, :crop=>"scale"},
+                {:quality=>90}
+                ], class: "avatar-bordered"
+                %>
+                <p class="name"><%= caracter.name %></p>
+                <%= link_to caracter_path(caracter), data: {turbo_method: :delete, turbo_confirm: "Tu es sûr.e de vouloir supprimer #{caracter.name} ?"} do %>
+                  <p class="xmark"><i class="fa-solid fa-circle-xmark"></i></p>
+                <% end %>
               </div>
-            <% end %>
+            </div>
+          <% end %>
+        </div>
+      <div class="mt-5">
+        <button data-add-caracter-target="button" data-action="click->add-caracter#displayForm" class="btn btn-dark">Ajouter un personnage</button>
+        <%= render "caracters/new", caracter: @caracter %>
           </div>
-        <% end %>
-        <%# <div class="">
-          <%= cl_image_tag @random_caracter.photo.key, :transformation=>[
-          {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
-          {:radius=>"max"},
-          {:width=>200, :crop=>"scale"}
-          ], class:"avatar-large" %>
-        <%# </div>
-        <%= @random_caracter.name %>
-      <%# </div> %>
+      </div>
+    </div>
   </div>
-  </div>
+
+  <div class="" data-controller="pick-one" >
+    <div class="">
+      <% if Group.all.count == 0 %>
+        <h3>Que veux-tu faire ?</h3>
+        <button data-pick-one-target="button" data-action="click->pick-one#displayForm" class="button-choice">Tirer au sort un personnage</button>
+        <button data-add-caracter-target="button" data-action="click->add-caracter#displayForm" class="button-choice">Créer des équipes</button>
+        <%= render 'requests/number_of_groups', request: @request %>
+      <% else %>
+        <%= render 'groups/reset' %>
+      <% end %>
+
+
+      <%# <%= render 'caracters/onerandom', random_caracter: @random_caracter %>
+
+    </div>
+
+
+    <div class="group-grid" data-pick-one-target="result">
+    <% if @groups == [] %>
+      <p>Hello</p>
+    <% end %>
+      <% @groups.each_with_index do |group, index| %>
+        <div class="group-card ">
+          <h4>Equipe <%= index + 1 %></h4>
+          <% group.memberships.each do |membership|  %>
+            <div class="">
+
+              <p><%= membership.caracter.name %></p>
+              <div class="">
+              <%= cl_image_tag membership.caracter.photo.key, :transformation=>[
+              {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
+              {:radius=>"max"},
+              {:width=>200, :crop=>"scale"}
+              ], class:"avatar-bordered" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <%# <div class="">
+        <%= cl_image_tag @random_caracter.photo.key, :transformation=>[
+        {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
+        {:radius=>"max"},
+        {:width=>200, :crop=>"scale"}
+        ], class:"avatar-large" %>
+      <%# </div>
+      <%= @random_caracter.name %>
+    <%# </div> %>
+</div>
+</div>
