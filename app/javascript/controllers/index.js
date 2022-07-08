@@ -13,5 +13,8 @@ application.register("caracters-and-groups", CaractersAndGroupsController)
 import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
 
+import InsertSidebarController from "./insert_sidebar_controller.js"
+application.register("insert-sidebar", InsertSidebarController)
+
 import PickOneController from "./pick_one_controller.js"
 application.register("pick-one", PickOneController)

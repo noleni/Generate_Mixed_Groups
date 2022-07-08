@@ -34,8 +34,4 @@ class CaractersController < ApplicationController
   def caracter_params
     params.require(:caracter).permit(:name, :status, :photo)
   end
-
-  def number_params
-    params.require(:number).permit(:number)
-  end
 end

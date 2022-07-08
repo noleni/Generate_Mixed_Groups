@@ -1,5 +1,6 @@
 <%= simple_form_for request,
-    data: { } do |f| %>
+  html: { class: 'd-none'},
+  data: { pick_one_target: "form"} do |f| %> 
   <%= f.input :number, label: "Combien d'équipes faut-il créer ?" %>
   <%= f.button :submit, "C'est parti !", class:'btn btn-dark' %>
 <% end %>

@@ -1,11 +1,11 @@
 
-<div class="wrapper">
+<div class="wrapper" data-controller="insert-sidebar">
   <div class="menu-box" data-controller="add-caracter">
 
     <div class="" >
-      <div class="sidebar p-4">
-        <h5 class="ms-2 my-3">Personnages disponibles</h5>
-        <div class="caracters-list">
+      <div class="sidebar-before-load p-4" data-insert-sidebar-target="sidebar">
+        <h5 class="ms-2 my-3 title-before-load" data-insert-sidebar-target="title">Personnages disponibles</h5>
+        <div class="caracters-list-before-load" data-insert-sidebar-target="caracters">
           <% @caracters.valid.each do |caracter| %>
             <div class="cards" data-add-caracter-target="caracter">
               <div class="test d-flex m-2 align-items-center">
@@ -36,8 +36,8 @@
     <div class="">
       <% if Group.all.count == 0 %>
         <h3>Que veux-tu faire ?</h3>
-        <button data-pick-one-target="button" data-action="click->pick-one#displayForm" class="button-choice">Tirer au sort un personnage</button>
-        <button data-add-caracter-target="button" data-action="click->add-caracter#displayForm" class="button-choice">Créer des équipes</button>
+        <button data-pick-one-target="pick" data-action="click->pick-one#insert" class="button-choice">Tirer au sort un personnage</button>
+        <button data-add-caracter-target="button" data-action="click->pick-one#displayForm" class="button-choice">Créer des équipes</button>
         <%= render 'requests/number_of_groups', request: @request %>
       <% else %>
         <%= render 'groups/reset' %>
@@ -51,7 +51,6 @@
 
     <div class="group-grid" data-pick-one-target="result">
     <% if @groups == [] %>
-      <p>Hello</p>
     <% end %>
       <% @groups.each_with_index do |group, index| %>
         <div class="group-card ">
