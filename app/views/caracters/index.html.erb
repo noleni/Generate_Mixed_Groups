@@ -56,16 +56,16 @@
         <div class="group-card ">
           <h4>Equipe <%= index + 1 %></h4>
           <% group.memberships.each do |membership|  %>
-            <div class="">
+            <div class="test d-flex m-2 align-items-center">
 
-              <p><%= membership.caracter.name %></p>
               <div class="">
               <%= cl_image_tag membership.caracter.photo.key, :transformation=>[
-              {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
+                {:gravity=>"face", :height=>400, :width=>400, :crop=>"crop"},
               {:radius=>"max"},
               {:width=>200, :crop=>"scale"}
               ], class:"avatar-bordered" %>
               </div>
+              <p class="name"><%= membership.caracter.name %></p>
             </div>
           <% end %>
         </div>
